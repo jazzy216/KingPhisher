@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phishing Awareness Simulator</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="banner" role="banner">
+    Training Simulator � Do Not Use for Real-World Targeting
+  </div>
+
+  <header class="app-header">
+    <div>
+      <h1>Inbox Training</h1>
+      <p class="tagline">This is a security-awareness training simulator. Not for generating or deploying real phishing.</p>
+    </div>
+    <div class="scoreboard" aria-label="Progress summary">
+      <div><span>Score</span><strong id="scoreDisplay">0</strong></div>
+      <div><span>Correct</span><strong id="correctCount">0</strong></div>
+      <div><span>Streak</span><strong id="streakCount">0</strong></div>
+      <div><span>Progress</span><strong id="progressCount">0/0</strong></div>
+    </div>
+  </header>
+
+  <main class="layout" aria-label="Inbox simulator">
+    <aside class="sidebar" aria-label="Email list">
+      <div class="list-header">
+        <h2>Inbox</h2>
+        <button id="retryMissed" class="ghost-btn" aria-label="Retry incorrect emails" disabled>Retry missed</button>
+      </div>
+      <ul id="emailList" role="listbox" aria-activedescendant="email-0" tabindex="0"></ul>
+    </aside>
+
+    <section class="content" aria-live="polite">
+      <div class="email-meta">
+        <div>
+          <p class="pill" id="riskLevel">Risk: --</p>
+          <p class="meta"><strong>From:</strong> <span id="emailFrom"></span></p>
+          <p class="meta"><strong>To:</strong> you@example.com</p>
+          <p class="meta"><strong>Subject:</strong> <span id="emailSubject"></span></p>
+          <p class="meta"><strong>Date:</strong> <span id="emailDate"></span></p>
+        </div>
+        <div class="actions">
+          <button id="reportBtn" class="danger" aria-label="Report as phishing">Report as Phishing</button>
+          <button id="safeBtn" class="primary" aria-label="Mark as safe">Mark Safe</button>
+        </div>
+      </div>
+      <article id="emailBody" class="email-body" tabindex="0"></article>
+
+      <section id="feedback" class="feedback hidden" aria-live="polite">
+        <div class="feedback-header">
+          <h3 id="feedbackResult"></h3>
+          <p id="feedbackDetail"></p>
+        </div>
+        <ul id="indicatorList"></ul>
+      </section>
+
+      <section class="learn" aria-label="Learn section">
+        <h3>Learn: Quick Safety Checks</h3>
+        <div class="learn-grid">
+          <div>
+            <h4>Common red flags</h4>
+            <ul>
+              <li>Unexpected urgency or threats</li>
+              <li>Mismatched sender domain vs. display name</li>
+              <li>Requests for sensitive data or payments</li>
+              <li>Unusual attachments or file types</li>
+              <li>Generic greetings or tone shifts</li>
+              <li>Links that do not match the stated destination</li>
+            </ul>
+          </div>
+          <div>
+            <h4>When to report</h4>
+            <ul>
+              <li>If you feel rushed to act immediately</li>
+              <li>If payment details are requested outside normal process</li>
+              <li>If the sender address looks off-brand or misspelled</li>
+              <li>If links or attachments seem unrelated to your work</li>
+              <li>When in doubt, pause and report for review</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <h3 id="modalTitle">Report as Phishing</h3>
+      <p>This action is for training only. Reporting here helps you practice spotting suspicious messages.</p>
+      <div class="modal-actions">
+        <button id="confirmReport" class="danger">Confirm Report</button>
+        <button id="cancelReport" class="ghost-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
